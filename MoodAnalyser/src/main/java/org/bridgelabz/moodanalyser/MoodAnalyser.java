@@ -4,7 +4,7 @@ public class MoodAnalyser {
 
 	private String message;
 
-	// uc2
+	// uc3
 	public MoodAnalyser() {
 
 	}
@@ -13,8 +13,7 @@ public class MoodAnalyser {
 		this.message = message;
 	}
 
-	// TC2.1
-	public String analyseMood() {
+	public String analyseMood() throws MoodAnalysisException {
 		try {
 			if (message.contains("sad")) {
 				return "sad";
@@ -22,7 +21,7 @@ public class MoodAnalyser {
 				return "happy";
 			}
 		} catch (NullPointerException exception) {
-			return "happy";
+			throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NUll_MESSAGE, "enter valid message");
 		}
 	}
 
