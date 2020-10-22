@@ -30,12 +30,23 @@ public class MoodAnalyserTest {
 
 	// Tc3.1
 	@Test()
-	public void givenNullMessage_WhenAnalyse_shouldThrowMoodAnalysisException() throws MoodAnalysisException {
+	public void givenNullMessage_WhenAnalyse_shouldThrowMoodAnalysisException() {
 		MoodAnalyser moodAnalyser = new MoodAnalyser(null);
 		try {
 			moodAnalyser.analyseMood();
 		} catch (MoodAnalysisException exception) {
 			Assert.assertEquals(MoodAnalysisException.ExceptionType.NUll_MESSAGE, exception.exceptionType);
+		}
+	}
+
+	// Tc3.2
+	@Test()
+	public void givenEmptyMessage_WhenAnalyse_shouldThrowMoodAnalysisException() {
+		MoodAnalyser moodAnalyser = new MoodAnalyser("");
+		try {
+			moodAnalyser.analyseMood();
+		} catch (MoodAnalysisException exception) {
+			Assert.assertEquals(MoodAnalysisException.ExceptionType.EMPTY_MESSAGE, exception.exceptionType);
 		}
 	}
 
