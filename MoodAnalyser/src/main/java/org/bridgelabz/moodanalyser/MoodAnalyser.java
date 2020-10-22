@@ -4,7 +4,7 @@ public class MoodAnalyser {
 
 	private String message;
 
-	// Refactoring uc1
+	// uc2
 	public MoodAnalyser() {
 
 	}
@@ -14,11 +14,14 @@ public class MoodAnalyser {
 	}
 
 	public String analyseMood() {
-
-		if (message.contains("sad")) {
-			return "sad";
-		} else {
-			return "happy";
+		try {
+			if (message.contains("sad")) {
+				return "sad";
+			} else {
+				return "happy";
+			}
+		} catch (NullPointerException exception) {
+			return "invalid mood";
 		}
 	}
 
