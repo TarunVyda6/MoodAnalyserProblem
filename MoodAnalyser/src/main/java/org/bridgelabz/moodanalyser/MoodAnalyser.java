@@ -13,6 +13,7 @@ public class MoodAnalyser {
 		this.message = message;
 	}
 
+	// TC2.1
 	public String analyseMood() {
 		try {
 			if (message.contains("sad")) {
@@ -21,7 +22,7 @@ public class MoodAnalyser {
 				return "happy";
 			}
 		} catch (NullPointerException exception) {
-			return "invalid mood";
+			return "happy";
 		}
 	}
 
