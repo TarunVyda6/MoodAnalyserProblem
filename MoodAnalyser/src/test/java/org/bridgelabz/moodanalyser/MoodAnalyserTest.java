@@ -6,7 +6,7 @@ import org.junit.Test;
 public class MoodAnalyserTest {
 	// Tc1.1
 	@Test
-	public void givenSadMessage_WhenAnalyse_shouldReturnSadMood() {
+	public void givenSadMessage_WhenAnalyse_shouldReturnSadMood() throws MoodAnalysisException {
 		MoodAnalyser moodAnalyser = new MoodAnalyser("i am in sad mood");
 		String mood = moodAnalyser.analyseMood();
 		Assert.assertEquals("sad", mood);
@@ -14,17 +14,29 @@ public class MoodAnalyserTest {
 
 	// Tc1.2
 	@Test
-	public void givenHappyMessage_WhenAnalyse_shouldReturnHappyMood() {
+	public void givenHappyMessage_WhenAnalyse_shouldReturnHappyMood() throws MoodAnalysisException {
 		MoodAnalyser moodAnalyser = new MoodAnalyser("i am in happy mood");
 		String mood = moodAnalyser.analyseMood();
 		Assert.assertEquals("happy", mood);
 	}
 
 	// Tc2.1
-	@Test
-	public void givenNullMessage_WhenAnalyse_shouldReturnHappyMood() {
+	@Test(expected = MoodAnalysisException.class)
+	public void givenNullMessage_WhenAnalyse_shouldReturnHappyMood() throws MoodAnalysisException {
 		MoodAnalyser moodAnalyser = new MoodAnalyser(null);
 		String mood = moodAnalyser.analyseMood();
 		Assert.assertEquals("happy", mood);
 	}
+
+	// Tc3.1
+	@Test()
+	public void givenNullMessage_WhenAnalyse_shouldThrowMoodAnalysisException() throws MoodAnalysisException {
+		MoodAnalyser moodAnalyser = new MoodAnalyser(null);
+		try {
+			moodAnalyser.analyseMood();
+		} catch (MoodAnalysisException exception) {
+			Assert.assertEquals(MoodAnalysisException.ExceptionType.NUll_MESSAGE, exception.exceptionType);
+		}
+	}
+
 }
